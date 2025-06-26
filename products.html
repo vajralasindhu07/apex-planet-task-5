@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Products</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="products.html">Products</a>
+      <a href="cart.html">Cart</a>
+      <a href="about.html">About</a>
+    </nav>
+  </header>
+
+  <!-- Filter Controls -->
+  <section class="filters">
+    <input type="text" id="searchInput" placeholder="Search products..." />
+    <select id="categoryFilter">
+      <option value="All">All</option>
+      <option value="Electronics">Electronics</option>
+      <option value="Clothing">Clothing</option>
+    </select>
+    <select id="sortBy">
+      <option value="">Sort By</option>
+      <option value="price">Price</option>
+      <option value="rating">Rating</option>
+    </select>
+  </section>
+
+  <!-- Product Grid with Images -->
+  <main>
+    <div id="productList" class="product-grid">
+      <!-- Product 1 -->
+      <div class="product-card">
+        <img src="images/smartphone.jpg" alt="Smartphone">
+        <h3>Smartphone</h3>
+        <p>Category: Electronics</p>
+        <p>Price: ₹29,999</p>
+        <p>Rating: ⭐4.5</p>
+        <button>Add to Cart</button>
+      </div>
+
+      <!-- Product 2 -->
+      <div class="product-card">
+        <img src="images/headphones.jpg" alt="Wireless Headphones">
+        <h3>Wireless Headphones</h3>
+        <p>Category: Electronics</p>
+        <p>Price: ₹4,999</p>
+        <p>Rating: ⭐4.2</p>
+        <button>Add to Cart</button>
+      </div>
+
+      <!-- Product 3 -->
+      <div class="product-card">
+        <img src="tshirt.jpg" alt="T-shirt">
+        <h3>T-shirt</h3>
+        <p>Category: Clothing</p>
+        <p>Price: ₹799</p>
+        <p>Rating: ⭐4.1</p>
+        <button>Add to Cart</button>
+      </div>
+
+      <!-- Product 4 -->
+      <div class="product-card">
+        <img src="sofa.jpg" alt="Sofa Set">
+        <h3>Sofa Set</h3>
+        <p>Category: Home</p>
+        <p>Price: ₹23,999</p>
+        <p>Rating: ⭐4.6</p>
+        <button>Add to Cart</button>
+      </div>
+
+      <!-- Product 5 -->
+      <div class="product-card">
+        <img src="tv.jpg" alt="LED TV 42">
+        <h3>LED TV 42"</h3>
+        <p>Category: Electronics</p>
+        <p>Price: ₹34,999</p>
+        <p>Rating: ⭐4.7</p>
+        <button>Add to Cart</button>
+      </div>
+
+      <!-- Product 6 -->
+      <div class="product-card">
+        <img src="speaker.jpg" alt="Bluetooth Speaker">
+        <h3>Bluetooth Speaker</h3>
+        <p>Category: Electronics</p>
+        <p>Price: ₹2,499</p>
+        <p>Rating: ⭐4.4</p>
+        <button>Add to Cart</button>
+      </div>
+
+      <!-- Product 7 -->
+      <div class="product-card">
+        <img src="wallet.jpg" alt="Leather Wallet">
+        <h3>Leather Wallet</h3>
+        <p>Category: Clothing</p>
+        <p>Price: ₹1,299</p>
+        <p>Rating: ⭐4.3</p>
+        <button>Add to Cart</button>
+      </div>
+
+      <!-- Product 8 -->
+      <div class="product-card">
+        <img src="bedlamp.jpg" alt="Bed Lamp">
+        <h3>Bed Lamp</h3>
+        <p>Category: Home</p>
+        <p>Price: ₹899</p>
+        <p>Rating: ⭐4.2</p>
+        <button>Add to Cart</button>
+      </div>
+
+      <!-- Product 9 -->
+      <div class="product-card">
+        <img src="mixer.jpg" alt="Kitchen Mixer">
+        <h3>Kitchen Mixer</h3>
+        <p>Category: Home</p>
+        <p>Price: ₹3,199</p>
+        <p>Rating: ⭐4.1</p>
+        <button>Add to Cart</button>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/products.js"></script>
+  <script src="js/shop.js"></script>
+</body>
+</html>

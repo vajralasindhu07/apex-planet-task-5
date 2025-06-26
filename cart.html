@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Your Cart</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f3f6fa;
+    }
+
+    header {
+      background-color: #2c3e50;
+      padding: 1rem 2rem;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    nav a {
+      color: white;
+      margin-left: 1.2rem;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .cart-container {
+      padding: 2rem;
+      background: linear-gradient(to right, #f7f8fc, #e0ecf9);
+    }
+
+    .cart-title {
+      text-align: center;
+      font-size: 2rem;
+      font-weight: bold;
+      margin-bottom: 2rem;
+      color: #333;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 2rem;
+    }
+
+    .product-card {
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      padding: 1rem;
+      text-align: center;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .product-card h3 {
+      margin: 1rem 0 0.5rem;
+      font-size: 1.2rem;
+      color: #333;
+    }
+
+    .product-card p {
+      margin: 0.3rem 0;
+      font-size: 0.95rem;
+      color: #666;
+    }
+
+    .btn-group {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .btn-group button {
+      padding: 0.6rem 1.2rem;
+      background-color: #03dac5;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-group button:hover {
+      background-color: #018786;
+    }
+
+    /* Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      padding-top: 120px;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.4);
+    }
+
+    .modal-content {
+      background-color: white;
+      margin: auto;
+      padding: 2rem;
+      border: 1px solid #888;
+      width: 90%;
+      max-width: 400px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .close-btn {
+      color: #aaa;
+      float: right;
+      font-size: 24px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .payment-btn {
+      margin: 1rem 0.5rem;
+      padding: 0.7rem 1.5rem;
+      font-size: 1rem;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      background-color: #6200ea;
+      color: white;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .payment-btn:hover {
+      background-color: #3700b3;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">MyStore</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="products.html">Products</a>
+      <a href="cart.html">Cart</a>
+      <a href="about.html">About</a>
+    </nav>
+  </header>
+
+  <div class="cart-container">
+    <h1 class="cart-title">Your Cart</h1>
+    <div class="product-grid" id="cart-items">
+      <!-- JavaScript will populate this -->
+    </div>
+  </div>
+
+  <!-- Payment Modal -->
+  <div id="paymentModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal()">&times;</span>
+      <h2>Select Payment Method</h2>
+      <p id="modal-product-name"></p>
+      <button class="payment-btn" onclick="processPayment('UPI')">Pay with UPI</button>
+      <button class="payment-btn" onclick="processPayment('Cash on Delivery')">Cash on Delivery</button>
+    </div>
+  </div>
+
+  <script>
+    const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+    const cartContainer = document.getElementById('cart-items');
+    let selectedProduct = '';
+
+    function renderCart() {
+      cartContainer.innerHTML = '';
+      cartItems.forEach((product, index) => {
+        const card = document.createElement('div');
+        card.className = 'product-card';
+        card.innerHTML = `
+          <img src="${product.image}" alt="${product.name}">
+          <h3>${product.name}</h3>
+          <p>Price: ₹${product.price}</p>
+          <p>Rating: ${product.rating} ⭐</p>
+          <div class="btn-group">
+            <button onclick="removeItem(${index})">Remove</button>
+            <button onclick="buyNow('${product.name}')">Buy Now</button>
+          </div>
+        `;
+        cartContainer.appendChild(card);
+      });
+    }
+
+    function removeItem(index) {
+      cartItems.splice(index, 1);
+      localStorage.setItem('cart', JSON.stringify(cartItems));
+      renderCart();
+    }
+
+    function buyNow(productName) {
+      selectedProduct = productName;
+      document.getElementById('modal-product-name').innerText = `Product: ${productName}`;
+      document.getElementById('paymentModal').style.display = 'block';
+    }
+
+    function closeModal() {
+      document.getElementById('paymentModal').style.display = 'none';
+    }
+
+    function processPayment(method) {
+      alert(`You chose ${method} for: ${selectedProduct}`);
+      closeModal();
+    }
+
+    renderCart();
+  </script>
+</body>
+</html>

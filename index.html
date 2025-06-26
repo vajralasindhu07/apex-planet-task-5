@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Home - MyStore</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #f7f8fc, #e0ecf9);
+      color: #333;
+    }
+
+    header {
+      position: relative;
+      height: 100vh;
+      background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)),
+        url('banner1.jpg') center/cover no-repeat;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+      animation: fadeIn 2s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    nav {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1rem;
+      padding: 6px 14px;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 6px;
+      transition: all 0.3s ease;
+    }
+
+    nav a:hover {
+      background: rgba(0, 0, 0, 0.6);
+      transform: translateY(-2px);
+    }
+
+    h1 {
+      font-size: 2.7rem;
+      background: rgba(0, 0, 0, 0.4);
+      padding: 1.2rem 2rem;
+      border-radius: 14px;
+      backdrop-filter: blur(4px);
+      line-height: 1.4;
+    }
+
+    main {
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .home-banner {
+      display: flex;
+      justify-content: center;
+      margin-top: 3rem;
+      padding: 2rem;
+    }
+
+    .banner-text {
+      max-width: 700px;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+      animation: slideIn 1.2s ease forwards;
+    }
+
+    @keyframes slideIn {
+      from { transform: translateY(30px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .banner-text h2 {
+      color: #5e35b1;
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .banner-text p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #555;
+    }
+
+    .banner-text ul {
+      text-align: left;
+      font-size: 1rem;
+      line-height: 1.8;
+      margin-top: 1rem;
+      padding-left: 1.2rem;
+    }
+
+    .banner-text ul li {
+      margin-bottom: 0.5rem;
+    }
+
+    .cta-button {
+      display: inline-block;
+      text-decoration: none;
+      text-align: center;
+      margin-top: 1.5rem;
+      padding: 12px 30px;
+      background: linear-gradient(to right, #6200ea, #3700b3);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .cta-button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 18px rgba(98, 0, 234, 0.3);
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2rem;
+      }
+
+      .banner-text {
+        padding: 1.5rem;
+      }
+
+      .cta-button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="products.html">Products</a>
+      <a href="cart.html">Cart</a>
+      <a href="about.html">About</a>
+    </nav>
+    <h1>Hey there, Welcome to MyStore!<br>Your Style Journey Starts Here ✨</h1>
+  </header>
+
+  <main>
+    <section class="home-banner">
+      <div class="banner-text">
+        <h2>Experience Shopping Like Never Before</h2>
+        <p>Discover handpicked collections that blend innovation, style, and comfort. Whether it’s the latest tech or timeless fashion, <strong>MyStore</strong> brings it to your doorstep with ease and elegance.</p>
+        <ul>
+          <li>🚀 Fast & Free Nationwide Shipping</li>
+          <li>🎁 Weekly Deals & Member Rewards</li>
+          <li>💳 Secure Checkout with Multiple Options</li>
+          <li>💬 24/7 Live Support at Your Fingertips</li>
+        </ul>
+        <a href="products.html" class="cta-button">Explore Products</a>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
